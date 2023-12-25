@@ -9,6 +9,10 @@ use App\Models\Post;
 
 class BlogController extends Controller
 {
+    public function __construct() {
+        return $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index() {
         $posts = Post::latest()->get();
         return view('blogPosts.blog', compact('posts')); // compact creates array from variable names
