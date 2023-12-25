@@ -10,13 +10,14 @@ use App\Models\Post;
 class BlogController extends Controller
 {
     public function index() {
-        $posts = Post::all();
+        $posts = Post::latest()->get();
         return view('blogPosts.blog', compact('posts')); // compact creates array from variable names
         // Before '.' is the parent directory
     }
 
-    public function show($slug) {
-        $post = Post::where('slug', $slug)->first();
+    // Using Route Model Binding as it receives the corresponding post of the passed slug
+    public function show(Post $post) {
+        // $post = Post::where('slug', $slug)->first(); // (Without route model binding)
         return view('blogPosts.post', compact('post'));
     }
 
