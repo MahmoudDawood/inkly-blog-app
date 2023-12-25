@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    // A post belongsTo a ((user))
+    public function user() { // Laravel makes it available as a property under the hood
+        return $this->belongsTo(User::class);
+    }
 }
