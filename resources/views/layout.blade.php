@@ -25,10 +25,10 @@
 
         <div class="side-links">
           <ul>
-            <li><a class="active" href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a class="active" href="{{route('welcome.index')}}">Home</a></li>
+            <li><a href="{{route('blog.index')}}">Blog</a></li>
+            <li><a href="{{route('about')}}">About</a></li>
+            <li><a href="{{route('contact.index')}}">Contact</a></li>
           </ul>
         </div>
 
@@ -63,7 +63,7 @@
       </footer>
     </div>
 
-    <!-- Click events to menu and close buttons using javaascript-->
+    <!-- Click events to menu and close buttons using javascript-->
     <script>
       document
         .querySelector(".menuButton")
