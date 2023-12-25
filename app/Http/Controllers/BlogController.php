@@ -33,7 +33,9 @@ class BlogController extends Controller
         ]);
 
         $title = $request->input('title');
-        $slug = Str::slug($title, '-'); // To lower case and joins with second parameter.
+        $postId = Post::latest()->take(1)->first()->id + 1;
+        $slug = Str::slug($title, '-') . '-' . $postId; // To lower case and joins with second parameter.
+        // TODO: Check if mariadb only uses id of increments on the last stored it
         $user_id = Auth::user()->id;
         $body = $request->input('body');
 
