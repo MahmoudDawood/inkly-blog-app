@@ -12,7 +12,7 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    @yield('head')
   </head>
   <body>
     <div id="wrapper">
@@ -93,8 +93,6 @@
           console.error( error );
         } );
     </script>
-    <script>
-      CKEDITOR.replace('body');
-    </script>
+    @yield('scripts')
   </body>
 </html>
