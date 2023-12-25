@@ -13,4 +13,8 @@ class BlogController extends Controller
     public function show() {
         return view('post');
     }
+
+    public function create() {
+        return view('create-blog-post');
+    }
 }

@@ -13,6 +13,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
+
+                    <div class="dashboard">
+                        <ul>
+                            <li><a href="{{route('blog.create')}}">Create Post</a></li>
+                            <li><a href="">Create Category</a></li>
+                            <li><a href="">Categories List</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

@@ -22,7 +22,8 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 
 // To Blog page
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/post', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog/post', [BlogController::class, 'show'])->name('blog.show'); // Show post
+Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create'); // Create post
 
 // About page (Using closure -anonymous function- for simple logic)
 Route::get('/about', function () {
