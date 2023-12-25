@@ -10,11 +10,14 @@ use App\Models\Post;
 class BlogController extends Controller
 {
     public function index() {
-        return view('blogPosts.blog');
+        $posts = Post::all();
+        return view('blogPosts.blog', compact('posts')); // compact creates array from variable names
+        // Before '.' is the parent directory
     }
 
-    public function show() {
-        return view('blogPosts.post');
+    public function show($slug) {
+        $post = Post::where('slug', $slug)->first();
+        return view('blogPosts.post', compact('post'));
     }
 
     public function create() {
