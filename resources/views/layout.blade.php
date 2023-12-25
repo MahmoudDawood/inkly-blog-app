@@ -25,18 +25,14 @@
 
         <div class="side-links">
           <ul>
-            <li><a 
-              class="{{Request::routeIs('welcome.index') ? 'active' : ''}}" 
-              href="{{route('welcome.index')}}">Home</a></li>
-            <li><a 
-              class="{{Request::routeIs('blog.index') ? 'active' : ''}}" 
-              href="{{route('blog.index')}}">Blog</a></li>
-            <li><a 
-              class="{{Request::routeIs('about') ? 'active' : ''}}" 
-              href="{{route('about')}}">About</a></li>
-            <li><a 
-              class="{{Request::routeIs('contact.index') ? 'active' : ''}}" 
-              href="{{route('contact.index')}}">Contact</a></li>
+            <li><a class="{{Request::routeIs('welcome.index') ? 'active' : ''}}" href="{{route('welcome.index')}}">Home</a></li>
+            <li><a class="{{Request::routeIs('blog.index') ? 'active' : ''}}" href="{{route('blog.index')}}">Blog</a></li>
+            <li><a class="{{Request::routeIs('about') ? 'active' : ''}}" href="{{route('about')}}">About</a></li>
+            <li><a class="{{Request::routeIs('contact.index') ? 'active' : ''}}" href="{{route('contact.index')}}">Contact</a></li>
+            @guest
+              <li><a class="{{Request::routeIs('register') ? 'active' : ''}}" href="{{route('register')}}">Register</a></li>
+              <li><a class="{{Request::routeIs('login') ? 'active' : ''}}" href="{{route('login')}}">Login</a></li>
+            @endguest
           </ul>
         </div>
 
