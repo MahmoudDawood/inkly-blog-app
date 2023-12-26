@@ -22,12 +22,14 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 
 
 // To Blog page
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index'); // Get all posts
 Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create'); // Create post form
+Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit'); // Edit post form
+Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show'); // Show post
     // The passed object is sent to path, laravel by default uses it's id -overwritten to slug-
     // Controller receives the post which include this slug ((Route Model Binding))
-Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show'); // Show post
-Route::post('/blog', [BlogController::class, 'store'])->name('blog.store'); // Store post
+Route::post('/blog', [BlogController::class, 'store'])->name('blog.store'); // Store new post
+Route::put('/blog/{post}', [BlogController::class, 'update'])->name('blog.update'); // Update post
 
 
 // About page (Using closure -anonymous function- for simple logic)
