@@ -26,9 +26,19 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        // TODO: restrict categories creation
+        $request->validate([
+            'name' => 'required | unique:categories', // Specifying the table it's unique across
+        ]);
+
+        $name = $request->input('name');
+
+        $category = new Category();
+        $category->name = $name;
+        $category->save();
+
+        return redirect()->back()->with('status', 'Category Created Successfully');
     }
 
     /**
