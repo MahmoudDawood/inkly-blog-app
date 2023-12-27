@@ -7,16 +7,23 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 
+use function Laravel\Prompts\search;
+
 class BlogController extends Controller
 {
     public function __construct() {
         return $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index() {
-        $posts = Post::latest()->get();
+    public function index(Request $request) {
+        if($request->search) { // add input 
+            $posts = Post::where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->get();
+        } else {
+            $posts = Post::latest()->get();
+        }
         return view('blogPosts.blog', compact('posts')); // compact creates array from variable names
-        // Before '.' is the parent directory
+        // Before '.' is the parent directory in views
     }
 
     public function show(Post $post) { // Post is received from passed slug by Route Model Biding

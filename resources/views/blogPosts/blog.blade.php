@@ -10,7 +10,7 @@
         </p> 
     @endif
   <div class="searchbar">
-    <form action="">
+    <form action="{{ route('blog.index') }}">
       <input type="text" placeholder="Search..." name="search" />
 
       <button type="submit">
