@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create-categories');
+        return view('categories.create-category');
     }
 
     /**
@@ -55,7 +55,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit-category', compact('category'));
     }
 
     /**
@@ -63,7 +63,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required | unique:categories', // Specifying the table it's unique across
+        ]);
+
+        $name = $request->input('name');
+        $category->name = $name;
+        $category->save();
+
+        return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
+        // with stores key value pair in the session and sends it with the next response
     }
 
     /**
