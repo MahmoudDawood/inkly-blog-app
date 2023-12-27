@@ -19,14 +19,15 @@
 
     </form>
   </div>
+
   <div class="categories">
     <ul>
-      <li><a href="">Health</a></li>
-      <li><a href="">Entertainment</a></li>
-      <li><a href="">Sports</a></li>
-      <li><a href="">Nature</a></li>
+      @foreach ($categories as $category)
+        <li><a href="">{{ $category->name }}</a></li>
+      @endforeach
     </ul>
   </div>
+
   <section class="cards-blog latest-blog">
 
     @forelse ($posts as $post) {{-- Same as foreach but with extra handling for empty arrays --}}
@@ -59,15 +60,6 @@
   </section>
 
   <!-- pagination -->
-  {{-- <div class="pagination" id="pagination">
-    <a href="">&laquo;</a>
-    <a class="active" href="">1</a>
-    <a href="">2</a>
-    <a href="">3</a>
-    <a href="">4</a>
-    <a href="">5</a>
-    <a href="">&raquo;</a>
-  </div> --}}
   {{ $posts->links('pagination::default') }} {{-- Generate ready-to-use HTML links for pagination --}}
   {{-- Used styles are in vendoe/laravel/framework/src/Illuminate/pagination/resources/views --}}
   {{-- to move them to views `php artisan vendor:publish --tag=laravel-pagination` --}}

@@ -12,7 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::latest()->get();
+        return view('categories.index-categories', compact('categories'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create-category');
+        return view('categories.create-categories');
     }
 
     /**
