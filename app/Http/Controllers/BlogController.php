@@ -72,7 +72,7 @@ class BlogController extends Controller
     public function update(Request $request, Post $post) {
         // Authorize user for action
         if(auth()->user()->id !== $post->user->id) {
-            abort(403);
+            abort(403); // Client error -> Forbidden
         }
 
         $request->validate([
@@ -101,5 +101,10 @@ class BlogController extends Controller
 
         return redirect()->back()->with('status', 'Post Edited Successfully');
         // with stores key value pair in the session and sends it with the next response
+    }
+
+    public function delete(Post $post) {
+        $post->delete();
+        return redirect()->back()->with('status', 'Post Deleted Successfully');
     }
 }

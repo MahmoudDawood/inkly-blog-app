@@ -18,14 +18,14 @@
             <form action="{{route('blog.update', $post)}}" method="post" enctype="multipart/form-data">
                 {{-- enctype attribute is for encoding uploaded image data with POST request only--}}
                 {{-- Method should be PUT(provided below) but browsers only support GET, POST --}}
-                @method('put')
+                @method('put') {{-- Provided to Server --}}
                 @csrf {{-- Directive to protect from CSRF attacks --}}
 
                 <!-- Title -->
                 <label for="title"><span>Title</span></label>
-                <input type="text" id="title" name="title" value="{{$post->title}}" />
+                <input type="text" id="title" name="title" value="{{ $post->title }}" />
                 @error('title') {{-- The $attributeValue field is/must be $validationRule --}}
-                    <p style="color: red; margin-bottom: 25px;">{{$message}}</p>
+                    <p style="color: red; margin-bottom: 25px;">{{ $message }}</p>
                 @enderror
 
                 <!-- Image -->
@@ -33,16 +33,16 @@
                 <input type="file" id="image" name="image" />
                 {{-- Repopulating can't work with images for security reasons --}}
                 @error('image') 
-                    <p style="color: red; margin-bottom: 25px;">{{$message}}</p>
+                    <p style="color: red; margin-bottom: 25px;">{{ $message }}</p>
                     {{-- Custom error message is provided for uploading non-image file in /lang/en/validation.php --}}
                 @enderror
 
                 <!-- Body-->
                 <label for="body"><span>Body</span></label>
-                <textarea id="body" name="body">{{$post->body}}</textarea>
+                <textarea id="body" name="body">{{ $post->body }}</textarea>
                 {{-- Repopulating the old value from previous session --}}
                 @error('body') 
-                    <p style="color: red; margin-bottom: 25px;">{{$message}}</p>
+                    <p style="color: red; margin-bottom: 25px;">{{ $message }}</p>
                 @enderror
 
                 <!-- Button -->
