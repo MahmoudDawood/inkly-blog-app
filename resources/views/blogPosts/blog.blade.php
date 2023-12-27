@@ -35,7 +35,7 @@
           @if (auth()->user()->id === $post->user->id)
             <div class="post-buttons">
               <a href="{{route('blog.edit', $post)}}">Edit</a>
-              <form action="{{ route('blog.delete', $post) }}" method="post">
+              <form action="{{ route('blog.destroy', $post) }}" method="post">
                 @method('delete')
                 @csrf
                 <input type="submit" value="Delete">
@@ -59,7 +59,7 @@
   </section>
 
   <!-- pagination -->
-  <div class="pagination" id="pagination">
+  {{-- <div class="pagination" id="pagination">
     <a href="">&laquo;</a>
     <a class="active" href="">1</a>
     <a href="">2</a>
@@ -67,7 +67,10 @@
     <a href="">4</a>
     <a href="">5</a>
     <a href="">&raquo;</a>
-  </div>
+  </div> --}}
+  {{ $posts->links('pagination::default') }} {{-- Generate ready-to-use HTML links for pagination --}}
+  {{-- Used styles are in vendoe/laravel/framework/src/Illuminate/pagination/resources/views --}}
+  {{-- to move them to views `php artisan vendor:publish --tag=laravel-pagination` --}}
   <br>
 </main>
 @endsection

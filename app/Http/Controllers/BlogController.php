@@ -16,9 +16,9 @@ class BlogController extends Controller
     public function index(Request $request) {
         if($request->search) { // add input 
             $posts = Post::where('title', 'like', '%' . $request->search . '%')
-                ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->get();
+                ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->paginate(4);
         } else {
-            $posts = Post::latest()->get();
+            $posts = Post::latest()->paginate(4);
         }
         return view('blogPosts.blog', compact('posts')); // compact creates array from variable names
         // Before '.' is the parent directory in views
@@ -108,7 +108,7 @@ class BlogController extends Controller
         // with stores key value pair in the session and sends it with the next response
     }
 
-    public function delete(Post $post) {
+    public function destroy(Post $post) {
         $post->delete();
         return redirect()->back()->with('status', 'Post Deleted Successfully');
     }

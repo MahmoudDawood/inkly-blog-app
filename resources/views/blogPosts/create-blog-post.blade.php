@@ -37,7 +37,7 @@
 
                 <!-- Body-->
                 <label for="body"><span>Body</span></label>
-                <textarea id="body" name="body">{{old('title')}}</textarea>
+                <textarea id="body" name="body">{{old('body')}}</textarea>
                 {{-- Repopulating the old value from previous session --}}
                 @error('body') 
                     <p style="color: red; margin-bottom: 25px;">{{$message}}</p>

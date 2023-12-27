@@ -30,7 +30,7 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.sho
     // Controller receives the post which include this slug ((Route Model Binding))
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store'); // Store new post
 Route::put('/blog/{post}', [BlogController::class, 'update'])->name('blog.update'); // Update post
-Route::delete('/blog/{post}', [BlogController::class, 'delete'])->name('blog.delete'); // Delete post
+Route::delete('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy'); // Delete post
 
 
 // About page (Using closure -anonymous function- for simple logic)
