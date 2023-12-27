@@ -7,8 +7,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 
-use function Laravel\Prompts\search;
-
 class BlogController extends Controller
 {
     public function __construct() {

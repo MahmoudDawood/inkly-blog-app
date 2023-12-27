@@ -29,7 +29,7 @@
   </div>
   <section class="cards-blog latest-blog">
 
-    @foreach ($posts as $post)
+    @forelse ($posts as $post) {{-- Same as foreach but with extra handling for empty arrays --}}
       <div class="card-blog-content">
         @auth {{-- Authorize user action by his id --}}
           @if (auth()->user()->id === $post->user->id)
@@ -53,7 +53,9 @@
           <a href="{{route('blog.show', $post)}}">{{$post->title}}</a>
         </h4>
       </div>
-    @endforeach
+      @empty
+        <p>Sorry, currently there is no blog post related to that search!</p>
+    @endforelse
   </section>
 
   <!-- pagination -->
