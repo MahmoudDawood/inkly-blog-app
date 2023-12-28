@@ -24,14 +24,17 @@
   <section class="recommended">
     <p>Related</p>
     <div class="recommended-cards">
-      <a href="">
+
+      @foreach ($relatedPosts as $relatedPost)
+      <a href="{{ route('blog.show', $relatedPost)}}">
         <div class="recommended-card">
-          <img src="{{asset('images/smoothies.jpg')}}" alt="" loading="lazy" />
+          <img src="{{asset($relatedPost->imagePath)}}" alt="" loading="lazy" />
           <h4>
-            Healthy Smoothies
+            {{ $relatedPost->title }}
           </h4>
         </div>
       </a>
+      @endforeach
 
     </div>
   </section>

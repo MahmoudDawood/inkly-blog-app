@@ -15,9 +15,12 @@ class BlogController extends Controller
     }
 
     public function index(Request $request) {
-        if($request->search) { // add input 
+        if($request->search) { 
             $posts = Post::where('title', 'like', '%' . $request->search . '%')
                 ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->paginate(4);
+        } elseif ($request->category) {
+            $posts = Category::where('name', $request->category)->firstOrFail()->posts()
+                ->paginate(4)->withQueryString();
         } else {
             $posts = Post::latest()->paginate(4);
         }
@@ -29,7 +32,10 @@ class BlogController extends Controller
 
     public function show(Post $post) { // Post is received from passed slug by Route Model Biding
         // $post = Post::where('slug', $slug)->first(); // (Without route model binding)
-        return view('blogPosts.post', compact('post'));
+        $category = $post->category;
+        $relatedPosts = $category->posts()->where('id', '!=', $post->id)
+            ->latest()->take(3)->get();
+        return view('blogPosts.post', compact('post', 'relatedPosts'));
     }
 
     public function edit(Post $post) { // using route model binding
