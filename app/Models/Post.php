@@ -13,4 +13,9 @@ class Post extends Model
     public function user() { // Laravel makes it available as a property under the hood
         return $this->belongsTo(User::class);
     }
+    
+    // A post belongsTo a ((category))
+    public function category() { // Laravel makes it available as a property under the hood
+        return $this->belongsTo(Category::class);
+    }
 }
