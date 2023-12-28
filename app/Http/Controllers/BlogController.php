@@ -41,19 +41,27 @@ class BlogController extends Controller
     }
 
     public function create() {
-        return view('blogPosts.create-blog-post');
+        $categories = Category::latest()->get();
+        return view('blogPosts.create-blog-post', compact('categories'));
     }
 
     public function store(Request $request) {
         $request->validate([
             'title' => 'required',
             'image' => 'required | image', // Has to satisfy both (AND)
-            'body' => 'required'
+            'body' => 'required',
+            'category_id' => 'required' // custom validator in /lang/en/validation.php
         ]);
 
         $title = $request->input('title');
+        $category_id = $request->input('category_id');
 
-        $postId = Post::latest()->take(1)->first()->id + 1;
+        if(Post::latest()->first() !== null) {
+            $postId = Post::latest()->first()->id + 1;
+        }
+        else {
+            $postId = 1;
+        }
         $slug = Str::slug($title, '-') . '-' . $postId; // To lower case and joins with second parameter.
         // TODO: Check if mariadb only uses id of increments on the last stored it
         $user_id = Auth::user()->id;
@@ -69,6 +77,7 @@ class BlogController extends Controller
         $post->title = $title;
         $post->slug = $slug;
         $post->user_id = $user_id;
+        $post->category_id = $category_id;
         $post->body = $body;
         $post->imagePath = $imagePath;
         $post->save();

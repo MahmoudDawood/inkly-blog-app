@@ -6,7 +6,7 @@
 
         @include('includes.flash-message')
 
-       @foreach ($categories as $category)
+       @forelse ($categories as $category)
         <div class="item">
             <p>{{$category->name}}</p>
 
@@ -20,7 +20,9 @@
                 <input type="submit" value="Delete">
             </form>
             </div>
-        @endforeach
+        @empty
+            <p>Go ahead create your first category</p>
+        @endforelse
 
         <div class="index-categories">
             <a href="{{ route('categories.create') }}">Create category<span>&#8594;</span></a>

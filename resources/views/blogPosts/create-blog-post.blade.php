@@ -32,12 +32,24 @@
                     {{-- Custom error message is provided for uploading non-image file in /lang/en/validation.php --}}
                 @enderror
 
-                <!-- Body-->
-                <label for="body"><span>Body</span></label>
+            <!-- Drop down -->
+            <label for="categories"><span>Choose a category:</span></label>
+            <select name="category_id" id="categories">
+                <option selected disabled>Select option</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+            @error('category_id') 
+                <p style="color: red; margin-bottom: 25px;">{{$message}}</p>
+            @enderror
+
+            <!-- Body-->
+            <label for="body"><span>Body</span></label>
                 <textarea id="body" name="body">{{old('body')}}</textarea>
                 {{-- Repopulating the old value from previous session --}}
                 @error('body') 
-                    <p style="color: red; margin-bottom: 25px;">{{$message}}</p>
+                    <p style="color: red; margin: 20px 0;">{{$message}}</p>
                 @enderror
 
                 <!-- Button -->

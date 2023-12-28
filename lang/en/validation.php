@@ -176,6 +176,10 @@ return [
 
         'image' => [
             'image' => 'The file must be an image.' // Validation rule to customize
+        ],
+
+        'category_id' => [
+            'required' => 'The category field is required.'
         ]
     ],
 
